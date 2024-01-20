@@ -3,10 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>くすサポ おみくじ2024</title>
+<title>くすサポおみくじ2024</title>
+
+<style>
+.wrapper {
+    text-align: center;
+}
+
+.title {
+    padding-top: 50px;
+    min-height: 100px;
+    font-size: 30px;
+}
+
+.omikuji {
+    max-width: 250px;
+    padding-bottom: 20px;
+}
+
+button {
+    width: 280px;
+    padding: 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    background: #d82234; 
+}
+button:active {
+    transform: translateY(10px);
+    transition: 0.6s;
+}
+</style>
 </head>
 
 <body>
-    mikuji
+    <div class="wrapper">
+        <div class="title">
+            <p>くすサポおみくじ2024</p>
+        </div>
+        <img class="omikuji" src="image/omikuji.png" alt="omikuji"/>
+        <button>
+            おみくじをひく
+        </button>
+    </div>
 </body>
 </html>
