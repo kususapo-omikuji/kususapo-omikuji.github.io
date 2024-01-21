@@ -7,7 +7,8 @@
 
 <style>
 .wrapper {
-    text-align: center;
+    display: grid;
+    place-items: center;
 }
 
 .title {
@@ -21,8 +22,14 @@
     padding-bottom: 20px;
 }
 
+.resultWrapper {
+    display: grid;
+    place-items: center;
+}
+
 .result {
     display: none;
+    max-width: 100%;
 }
 
 button {
@@ -54,10 +61,8 @@ button:active {
             おみくじをひく
         </button>
     </div>
-    <div>
-        <p>
-            <img src="" id="result" class="result" alt="omikuji result">
-        </p>
+    <div class="resultWrapper">
+        <img src="" id="result" class="result" alt="omikuji result">
     </div>
 </body>
 <script>
