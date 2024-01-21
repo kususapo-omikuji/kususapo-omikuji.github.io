@@ -21,6 +21,10 @@
     padding-bottom: 20px;
 }
 
+.result {
+    display: none;
+}
+
 button {
     width: 280px;
     padding: 20px;
@@ -39,16 +43,114 @@ button:active {
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="omikujiWrapper" class="wrapper">
         <div class="title">
             <p>くすサポおみくじ2024</p>
         </div>
         <div>
-            <img class="omikuji" src="image/omikuji.png" alt="omikuji"/>
+            <img id="omikuji" class="omikuji" src="image/omikuji.png" alt="omikuji"/>
         </div>
-        <button>
+        <button id="drawButton">
             おみくじをひく
         </button>
     </div>
+    <div>
+        <p>
+            <img src="" id="result" class="result" alt="omikuji result">
+        </p>
+    </div>
 </body>
+<script>
+const drawButton = document.querySelector('#drawButton');
+const omikuji = document.querySelector('#omikuji');
+const omikujiWrapper = document.querySelector('#omikujiWrapper');
+drawButton.addEventListener('click', () =>{
+    drawButton.style.display ="none";
+    tatefuri();
+});
+
+function tatefuri() {
+    omikuji.animate(
+      [{
+        transform: 'translateY(0)'
+      }, {
+        transform: 'translateY(-30px)'
+      }, {
+        transform: 'translateY(0)'
+      }], {
+        duration: 400,
+        iterations: 3
+      });
+    setTimeout(function() {
+      kaiten();
+    }, 1200);
+}
+
+function kaiten() {
+    omikuji.animate(
+        [{
+        transform: 'rotate(0deg)'
+        }, {
+        transform: 'rotate(160deg)'
+        }], {
+        duration: 700,
+        easing: 'linear',
+        fill: 'forwards'
+    });
+    setTimeout(function() {
+        removeOmikuji();
+    }, 1000);
+}
+
+function removeOmikuji() {
+    omikujiWrapper.animate(
+        [{
+        opacity: 1
+        }, {
+        opacity: 0
+        }], {
+        duration: 500,
+        fill: 'forwards'
+    });
+    setTimeout(function() {
+        showResult();
+        omikujiWrapper.remove();
+    }, 500);
+}
+
+const results = [
+    'dx-daikichi.png',
+    'dx-daikichi.png',
+    'daikichi.png',
+    'daikichi.png',
+    'daikichi.png',
+    'daikichi.png',
+    'daikichi.png',
+    'daikichi.png',
+    'kyou.png'
+];
+
+function showResult() {
+    const key = Math.floor(Math.random() * results.length);
+    const result = document.querySelector("#result");
+    result.src = "image/" + results[key];
+    result.style.display ="block";
+    result.animate(
+        [{
+        transform: 'translateY(0) scale(1)'
+        }, {
+        transform: 'translateY(-30px)'
+        }, {
+        transform: 'scale(1)'
+        }, {
+        transform: 'scale(1.1)'
+        }, {
+        transform: 'translateY(0) scale(1)'
+        }], {
+        duration: 1000,
+        fill: 'forwards'
+    });
+} 
+
+</script>
 </html>
