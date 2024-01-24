@@ -123,7 +123,7 @@ button:active {
     border: 0;
 }
 .resultDetail .resultColumn h2 {
-    height: 4em;
+    height: 85px;
     font-size: 20px;
 }
 .resultDetail .resultColumn p {
@@ -134,14 +134,31 @@ button:active {
 
 /* for iPhone SE */
 @media screen and (max-width: 375px) {
+    /* おみくじを引く前 */
     .title {
         margin: 20px 0;
+    }
+    .omikuji {
+        max-width: 180px;
     }
     button {
         margin: 20px 0;
     }
+
+    /* おみくじを引いた後 */
+    .resultContainer {
+        width: calc(100% - 20px);
+        margin: 10px 0 0 0;
+    }
+    .resultUnsei .resultColumn h2,
+    .resultHitokoto .resultColumn h2 {
+        font-size: 20px;
+    }
+    .resultHitokoto .resultColumn p {
+        font-size: 16px;
+    }
     .resultDetail .resultColumn p {
-        height: 180px;
+        height: 150px;
     }
 } 
 </style>
