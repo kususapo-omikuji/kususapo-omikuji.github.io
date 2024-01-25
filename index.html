@@ -4,35 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>くすサポおみくじ2024</title>
+<link rel="preload" href="https://fonts.cdnfonts.com/s/93154/HinaMincho-Regular.woff" as="font" type="font/woff" crossorigin />
 
 <style>
+@font-face {
+    font-family: hina mincho;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Hina Mincho'), url(https://fonts.cdnfonts.com/s/93154/HinaMincho-Regular.woff) format('woff');
+    font-display: optical;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Hina Mincho', sans-serif;
+}
+body * {
+    margin: 0;
+    padding: 0;
+}
+
+/* おみくじを引く前 */
 .wrapper {
     display: grid;
     place-items: center;
+    overflow: hidden;
 }
-
 .title {
-    padding-top: 50px;
-    min-height: 100px;
+    margin: 40px 0;
     font-size: 30px;
+    color: #d82234;
 }
-
 .omikuji {
     max-width: 250px;
-    padding-bottom: 20px;
 }
-
-.resultWrapper {
-    display: grid;
-    place-items: center;
-}
-
-.result {
-    display: none;
-    max-width: 100%;
-}
-
 button {
+    margin: 40px 0;
     width: 280px;
     padding: 20px;
     border: none;
@@ -40,12 +48,119 @@ button {
     font-size: 25px;
     font-weight: bold;
     color: #fff;
-    background: #d82234; 
+    background: #d82234;
+    cursor: pointer;
+}
+button:hover {
+    background: rgba(216, 34, 52, 0.8)
 }
 button:active {
     transform: translateY(10px);
     transition: 0.6s;
 }
+
+/* おみくじを引いた後 */
+.resultWrapper {
+    display: none;
+    place-items: center;
+}
+.resultWrapper h1 {
+    color: #d82234;
+    text-align: center;
+    font-size: 20px;
+}
+.resultContainer {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 40px);
+    max-width: 400px;
+    margin: 20px 0 10px 0;
+    color: #d82234;
+    border: 4px double #d82234;
+}
+.resultRow {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 0 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #d82234;
+}
+.resultDetail {
+    display: flex;
+    flex-direction: row;
+    border: 0;
+}
+.resultColumn {
+    flex-grow: 1;
+    text-align: center;
+}
+.resultUnsei .resultColumn h2,
+.resultHitokoto .resultColumn h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+.resultUnsei .resultColumn p {
+    font-size: 40px;
+}
+.resultHitokoto .resultColumn p {
+    font-size: 22px;
+}
+.resultDetail .resultColumn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+    gap: 10px;
+    border-right: 1px dashed #d82234;
+
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+.resultDetail .resultSekkin {
+    border: 0;
+}
+.resultDetail .resultColumn h2 {
+    height: 85px;
+    font-size: 20px;
+}
+.resultDetail .resultColumn p {
+    height: 250px;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* for iPhone SE */
+@media screen and (max-width: 375px) {
+    /* おみくじを引く前 */
+    .title {
+        margin: 20px 0;
+    }
+    .omikuji {
+        max-width: 180px;
+    }
+    button {
+        margin: 20px 0;
+    }
+
+    /* おみくじを引いた後 */
+    .resultContainer {
+        width: calc(100% - 20px);
+        margin: 10px 0 0 0;
+    }
+    .resultUnsei .resultColumn h2,
+    .resultHitokoto .resultColumn h2 {
+        font-size: 20px;
+    }
+    .resultHitokoto .resultColumn p {
+        font-size: 16px;
+    }
+    .resultDetail .resultColumn p {
+        height: 150px;
+    }
+} 
 </style>
 </head>
 
@@ -62,10 +177,39 @@ button:active {
         </button>
     </div>
     <div class="resultWrapper">
-        <img src="" id="result" class="result" alt="omikuji result">
+        <div class="resultContainer">
+            <div class="resultRow resultUnsei">
+                <div class="resultColumn">
+                    <h2>くっす運</h2>
+                    <p>デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉</p>
+                </div>
+            </div>
+            <div class="resultRow resultHitokoto">
+                <div class="resultColumn">
+                    <h2>一言</h2>
+                    <p>ぐりふぃんどーーーる！</p>
+                </div>
+            </div>
+            <div class="resultRow resultDetail">
+                <div class="resultColumn resultEvent">
+                    <h2>イベント</h2>
+                    <p>チケ当たるしアリーナ前方</p>
+                </div>
+                <div class="resultColumn resultSocial">
+                    <h2>ソシャゲ</h2>
+                    <p>10連ガチャでUR3枚引ける</p>
+                </div>
+                <div class="resultColumn resultSekkin">
+                    <h2>接近戦</h2>
+                    <p>盛り上がるし、推しの顔が良すぎて泣いた</p>
+                </div>
+            </div>
+        </div>
+        <h1>くすサポおみくじ2024</h1>
     </div>
 </body>
 <script>
+
 const drawButton = document.querySelector('#drawButton');
 const omikuji = document.querySelector('#omikuji');
 const omikujiWrapper = document.querySelector('#omikujiWrapper');
@@ -123,24 +267,116 @@ function removeOmikuji() {
     }, 500);
 }
 
-const results = [
-    'dx-daikichi.png',
-    'dx-daikichi.png',
-    'daikichi.png',
-    'daikichi.png',
-    'daikichi.png',
-    'daikichi.png',
-    'daikichi.png',
-    'daikichi.png',
-    'kyou.png'
-];
+const unseiHtmlList = [
+    "デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉",
+    "吉",
+    "小吉",
+    "凶",
+]
+const hitokotoList = [
+    [
+        "ぐりふぃんどーーーる！",
+    ],
+    [
+        "プリンたべちゃおっ",
+        "アイスたべちゃおっ",
+    ],
+    [
+        "年末のはじまりだよ",
+        "地球がわたしに休めと言っているんだ",
+    ],
+    [
+        "始まりがあれば終わりがある",
+        "まぁそういうこともあるよね",
+        "口内炎っていつの間にかできてるよね",
+    ],
+]
+const eventList = [
+    [
+        "チケ当たるしアリーナ前方",
+    ],
+    [
+        "円盤3枚くらい積め",
+        "一般ねばればチケ買える",
+    ],
+    [
+        "トロッコを待て",
+        "双眼鏡があるとよし",
+    ],
+    [
+        "たくさん円盤積め",
+        "支払い忘れに注意",
+        "チケットを家に忘れがち",
+    ],
+]
+const socialList = [
+    [
+        "10連ガチャでUR3枚引ける",
+    ],
+    [
+        "恒常URは出る",
+        "詫び石いっぱいもらえる",
+    ],
+    [
+        "目玉UR出るが凸は無理",
+        "本編よりサイドストーリー進める癖は直しなさい",
+    ],
+    [
+        "天井を覚悟せよ",
+        "すり抜け多し",
+        "育成アイテムを貯めておくべし",
+    ],
+]
+const sekkinList = [
+    [
+        "盛り上がるし、推しの顔が良すぎて泣いた",
+    ],
+    [
+        "剥がしがゆるい",
+        "向こうのペースに飲まれる",
+    ],
+    [
+        "聞き返される",
+        "前のやつが盛り上がりすぎ",
+    ],
+    [
+        "認知切れを覚悟せよ",
+        "ハキハキしゃべるべし",
+        "頭が真っ白になる",
+    ],
+]
 
 function showResult() {
-    const key = Math.floor(Math.random() * results.length);
-    const result = document.querySelector("#result");
-    result.src = "image/" + results[key];
-    result.style.display ="block";
-    result.animate(
+    const unseiIndex = (function () {
+        const r = Math.random()
+        if (r < 0.1) {
+            return 0 // デラックス大吉 = 10%
+        } else if (r < 0.4) {
+            return 1 // 吉 = 30%
+        } else if (r < 0.7) {
+            return 2 // 小吉 = 30%
+        } else {
+            return 3 // 凶 = 30%
+        }
+    })();
+    const unseiHtml = unseiHtmlList[unseiIndex]
+    document.querySelector(".resultUnsei .resultColumn p").innerHTML = unseiHtml
+    const hitokotoIndex = Math.floor(Math.random() * hitokotoList[unseiIndex].length)
+    const hitokoto = hitokotoList[unseiIndex][hitokotoIndex]
+    document.querySelector(".resultHitokoto .resultColumn p").textContent = hitokoto
+    const eventIndex = Math.floor(Math.random() * eventList[unseiIndex].length)
+    const event = eventList[unseiIndex][eventIndex]
+    document.querySelector(".resultDetail .resultEvent p").textContent = event
+    const socialIndex = Math.floor(Math.random() * socialList[unseiIndex].length)
+    const social = socialList[unseiIndex][socialIndex]
+    document.querySelector(".resultDetail .resultSocial p").textContent = social
+    const sekkinIndex = Math.floor(Math.random() * sekkinList[unseiIndex].length)
+    const sekkin = sekkinList[unseiIndex][sekkinIndex]
+    document.querySelector(".resultDetail .resultSekkin p").textContent = sekkin
+
+    const resultContainer = document.querySelector(".resultWrapper")
+    resultContainer.style.display = "grid"
+    resultContainer.animate(
         [{
         transform: 'translateY(0) scale(1)'
         }, {
