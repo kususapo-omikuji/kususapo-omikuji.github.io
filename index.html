@@ -50,6 +50,7 @@ button {
     color: #fff;
     background: #d82234;
     cursor: pointer;
+    font-family: 'Hina Mincho', sans-serif;
 }
 button:hover {
     background: rgba(216, 34, 52, 0.8)
@@ -132,6 +133,21 @@ button:active {
     text-align: left;
 }
 
+/* 虹色 */
+.gaming {
+    background: linear-gradient(to right,#e60000,#f39800,#fff100,#009944,#0068b7,#1d2088,#920783);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* text-fill-colorはエディタが警告出すのでプレフィックス付きだけ */
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    animation: gaming 2s linear infinite;
+}
+@keyframes gaming {
+    100% { background-position: 200%; }
+}
+
 /* for iPhone SE */
 @media screen and (max-width: 375px) {
     /* おみくじを引く前 */
@@ -181,27 +197,27 @@ button:active {
             <div class="resultRow resultUnsei">
                 <div class="resultColumn">
                     <h2>くっす運</h2>
-                    <p>デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉</p>
+                    <p></p>
                 </div>
             </div>
             <div class="resultRow resultHitokoto">
                 <div class="resultColumn">
                     <h2>一言</h2>
-                    <p>ぐりふぃんどーーーる！</p>
+                    <p></p>
                 </div>
             </div>
             <div class="resultRow resultDetail">
                 <div class="resultColumn resultEvent">
                     <h2>イベント</h2>
-                    <p>チケ当たるしアリーナ前方</p>
+                    <p></p>
                 </div>
                 <div class="resultColumn resultSocial">
                     <h2>ソシャゲ</h2>
-                    <p>10連ガチャでUR3枚引ける</p>
+                    <p></p>
                 </div>
                 <div class="resultColumn resultSekkin">
                     <h2>接近戦</h2>
-                    <p>盛り上がるし、推しの顔が良すぎて泣いた</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -268,8 +284,8 @@ function removeOmikuji() {
 }
 
 const unseiHtmlList = [
-    "デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉",
-    "吉",
+    "<span class='gaming'>デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉</span>",
+    "中吉",
     "小吉",
     "凶",
 ]
@@ -352,7 +368,7 @@ function showResult() {
         if (r < 0.1) {
             return 0 // デラックス大吉 = 10%
         } else if (r < 0.4) {
-            return 1 // 吉 = 30%
+            return 1 // 中吉 = 30%
         } else if (r < 0.7) {
             return 2 // 小吉 = 30%
         } else {
