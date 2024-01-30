@@ -135,7 +135,7 @@ button:active {
 
 /* rubyとbackground-clipの相性が悪いため、力技でruby相当のレイアウトをする */
 .resultUnsei .resultColumn p .ruby {
-    font-size: 20px;
+    line-height: 0px; /* 余計な隙間をなくす */
 }
 .resultUnsei .resultColumn p .rt {
     display: inline-block;
@@ -147,7 +147,7 @@ button:active {
 .resultUnsei .resultColumn p .rb {
     display: inline-block;
     font-size: 40px;
-    line-height: 35px; /* 若干rubyに近づける */
+    line-height: 40px;
 }
 
 /* 虹色 */
