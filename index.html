@@ -133,6 +133,23 @@ button:active {
     text-align: left;
 }
 
+/* rubyとbackground-clipの相性が悪いため、力技でruby相当のレイアウトをする */
+.resultUnsei .resultColumn p .ruby {
+    font-size: 20px;
+}
+.resultUnsei .resultColumn p .rt {
+    display: inline-block;
+    font-size: 20px;
+    letter-spacing: 20px;
+    line-height: 20px;
+    margin: 0 -10px 0 10px;
+}
+.resultUnsei .resultColumn p .rb {
+    display: inline-block;
+    font-size: 40px;
+    line-height: 35px; /* 若干rubyに近づける */
+}
+
 /* 虹色 */
 .gaming {
     background: linear-gradient(to right,#e60000,#f39800,#fff100,#009944,#0068b7,#1d2088,#920783);
@@ -140,7 +157,7 @@ button:active {
     background-clip: text;
     -webkit-background-clip: text;
     /* text-fill-colorはエディタが警告出すのでプレフィックス付きだけ */
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.1);
     display: inline-block;
     animation: gaming 2s linear infinite;
 }
@@ -284,7 +301,7 @@ function removeOmikuji() {
 }
 
 const unseiHtmlList = [
-    "<span class='gaming'>デラッ<ruby>クス大<rt>くすだ</rt></ruby>吉</span>",
+    "<span class='gaming ruby'><span class='rt'>　　　くすだ　</span><span class='rb'>デラックス大吉</span></span>",
     "中吉",
     "小吉",
     "凶",
